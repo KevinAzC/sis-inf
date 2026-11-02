@@ -7,7 +7,6 @@ from typing import Any, Dict, List
 
 def obtener_repos(cliente: Any, usuario: str) -> List[Dict[str, Any]]:
     """Obtiene la lista de repositorios públicos del usuario llamando a la API REST
-
     de GitHub en el endpoint '/users/{usuario}/repos'.
 
     Args:
@@ -29,9 +28,7 @@ def filtrar_repos(
     repos: List[Dict[str, Any]], config: Dict[str, Any]
 ) -> List[Dict[str, Any]]:
     """Filtra una lista de repositorios eliminando privados, forks, archivados,
-
     repositorios excluidos y repositorios con topics excluidos, y los ordena
-
     por fecha de última actualización (pushed_at) en orden descendente.
 
     Args:
@@ -62,7 +59,7 @@ def filtrar_repos(
         if repo.get("fork", False):
             continue
 
-        # 3. Quitar archivados
+        # 3. Quitar archivados (Condición defensiva)
         if repo.get("archived", False):
             continue
 
